@@ -51,20 +51,25 @@
             <table class="table">
                 <thead>
                     <th>Taak #</th>
-                    <th>beschrijving</th>
-                    <th>deadline</th>
+                    <th>Beschrijving</th>
+                    <th>Deadline</th>
                     <th>Bewerken</th>
                     <th>Delete</th>
                 </thead>
-
                 <tbody>
                     @foreach($createdTasks as $createdTask)
+                    <tr>
                         <th>{{ $createdTask->id }}</th>
-                        <th>{{ $createdTask->name }}</th>
-                        <th>{{ $createdTask->deadline }}</th>
+                        <td>{{ $createdTask->name }}</td>
+                        <td>{{ $createdTask->deadline }}</td>
+                        <td>bewerk</td>
+                        <td>verwijder</td>
+                    </tr>
+                       
                     @endforeach 
                 </tbody>
             </table>
+            @endif
         </div>
     </div>    
 </body>
