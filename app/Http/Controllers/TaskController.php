@@ -14,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return view('tasks.index');
     }
 
     /**
@@ -35,7 +35,17 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'newTaskName' => 'required|min:5|max:255',
+            'newDeadline' => 'required',
+        ]);
+
+        $task = new Task;
+        $task->name = $request->newTaskName;
+        $task->deadline = $request->newDeadline;
+        $task->save();
+
+        return redirect()->back();
     }
 
     /**
