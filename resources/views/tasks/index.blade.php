@@ -20,9 +20,15 @@
             <div class="row">
                 <h1>Todo Lijst</h1>
             </div>
-
+            <!-- SUCCES Tonen -->
+            @if(Session::has('success'))
+            <div class="alert alert-success">
+                <strong>{{Session::get('success')}}</strong>
+            </div>
+            @endif
+            <!-- errors tonen -->
             @if (count($errors) > 0)
-                <div class="alert alert-danger">
+                <div class="alert alert-warning">
                     <strong>Error:</strong>
                     <ul>
                         @foreach($errors->all() as $error)

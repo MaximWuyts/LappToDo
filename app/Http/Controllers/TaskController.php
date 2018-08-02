@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use Session;
 
 class TaskController extends Controller
 {
@@ -47,6 +48,8 @@ class TaskController extends Controller
         $task->deadline = $request->newDeadline;
         $task->save();
 
+        Session::flash('success','Nieuwe taak is succesvol toegevoegd!');
+        
         return redirect()->back();
     }
 
