@@ -20,6 +20,18 @@
             <div class="row">
                 <h1>Todo Lijst</h1>
             </div>
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <strong>Error:</strong>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error}}</li>
+                        @endforeach    
+                    </ul>
+                </div>
+            @endif    
+
             <div class="row">
             <form action="{{route('tasks.store')}}" method="POST">
                 {{ csrf_field() }}
@@ -33,10 +45,26 @@
                     <div class="col-md-2">
                         <input type="submit" class="btn btn-success btn-clock" value="Add Task">
                     </div>
-                    
-
                 </form>
             </div>
+            @if(count($createdTasks) > 0)
+            <table class="table">
+                <thead>
+                    <th>Taak #</th>
+                    <th>beschrijving</th>
+                    <th>deadline</th>
+                    <th>Bewerken</th>
+                    <th>Delete</th>
+                </thead>
+
+                <tbody>
+                    @foreach($createdTasks as $createdTask)
+                        <th>{{ $createdTask->id }}</th>
+                        <th>{{ $createdTask->name }}</th>
+                        <th>{{ $createdTask->deadline }}</th>
+                    @endforeach 
+                </tbody>
+            </table>
         </div>
     </div>    
 </body>
