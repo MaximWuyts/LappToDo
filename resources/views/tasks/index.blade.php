@@ -63,7 +63,14 @@
                         <td>{{ $createdTask->name }}</td>
                         <td>{{ $createdTask->deadline }}</td>
                         <td>bewerk</td>
-                        <td>verwijder</td>
+                        <td>
+                            <form action="{{ route('tasks.destroy',['tasks'=>$createdTask->id]) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>
+                        </td>
                     </tr>
                        
                     @endforeach 
