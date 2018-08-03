@@ -20,20 +20,24 @@
                     
                     @if(!Auth::check())
                     <h1 style="font-family: 'Raleway'; text-align:center; margin-top: 100px; color:#636b6f">U moet ingelogd zijn om taken te kunnen zien!</h1>
+                    <div class="col-md-2 col-md-offset-5" style="margin-top:20px;">
+                    <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
+                    <a href="{{ route('register')}}" class="btn btn-primary">Registreer</a>
+                    </div>
                     @endif
                 </div>
             @if(Auth::check())
+            <div class="col-md-offset-2 col-md-8">
             <div class="row">
-                    <h1 style="margin-left:15px;">Todo Lijst</h1>
-                </div>
-        <div class="col-md-offset-2 col-md-8">
-                <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <p class="pull-right" style="margin-top:10px; margin-right:20px;">Ingelogd als <b>{{Auth::user()->name}} </b><button type="submit" class="btn btn-warning">Uitloggen</button></p>
+                    <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <p class="pull-right" style="margin-top:20px; margin-right:20px;">Ingelogd als <b>{{Auth::user()->name}} </b><button type="submit" class="btn btn-warning">Uitloggen</button></p>
                     </form>
+                    <h1 style="margin-left:15px; margin-top:10px; color:#636b6f; font-family: 'Raleway';">Todo Lijst</h1>
+                   
+            </div>
 
-           
-            <!-- SUCCES Tonen -->
+            <!-- SUCCES message Tonen -->
             @if(Session::has('success'))
             <div class="alert alert-success">
                 <strong>{{Session::get('success')}}</strong>
@@ -51,7 +55,7 @@
                 </div>
             @endif    
             
-            <div class="row">
+            <div class="row" style="margin-top:25px;">
             <form action="{{route('tasks.store')}}" method="POST">
                 {{ csrf_field() }}
 
@@ -67,7 +71,7 @@
                 </form>
             </div>
             @if(count($createdTasks) > 0)
-            <table class="table">
+            <table class="table" style="margin-top:10px;">
                 <thead>
                     <th>Taak #</th>
                     <th>Beschrijving</th>
