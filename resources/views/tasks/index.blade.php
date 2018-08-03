@@ -33,7 +33,7 @@
                             @csrf
                             <p class="pull-right" style="margin-top:20px; margin-right:20px;">Ingelogd als <b>{{Auth::user()->name}} </b><button type="submit" class="btn btn-warning">Uitloggen</button></p>
                     </form>
-                    <h1 style="margin-left:15px; margin-top:10px; color:#636b6f; font-family: 'Raleway';">Todo Lijst</h1>
+                    <h1 style="margin-left:15px; margin-top:20px; color:#636b6f; font-family: 'Raleway';">Todo Lijst</h1>
                    
             </div>
 
@@ -76,17 +76,27 @@
                     <th>Taak #</th>
                     <th>Beschrijving</th>
                     <th>Deadline</th>
+                    <th>Voltooien</th>
                     <th>Bewerken</th>
                     <th>Delete</th>
                 </thead>
                 <tbody>
                     @foreach($createdTasks as $createdTask)
                     <tr>
+                        @if($createdTask->done === 0)
                         <th>{{ $createdTask->id }}</th>
                         <td>{{ $createdTask->name }}</td>
                         <td>{{ $createdTask->deadline }}</td>
-                        <td><a href="{{ route('tasks.edit',['tasks'=>$createdTask->id])}}" class="btn btn-primary">Bewerk</td>
+                       
                         <td>
+                            <form action="{{ url('tasks/taskDone/' . $createdTask->id) }}" method="POST">
+                                <input type="submit" class="btn btn-success" value="Done">
+                                @csrf
+                            </form>
+                        </td>
+                        <td><a href="{{ route('tasks.edit',['tasks'=>$createdTask->id])}}" class="btn btn-primary">Bewerk</td>
+                        
+                            <td>
                             <form action="{{ route('tasks.destroy',['tasks'=>$createdTask->id]) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="_method" value="DELETE">
@@ -94,6 +104,38 @@
                                 <input type="submit" class="btn btn-danger" value="Delete">
                             </form>
                         </td>
+                        @endif
+                    </tr>
+                       
+                    @endforeach 
+                </tbody>
+            </table>
+            @endif
+
+            <h3 style="margin-left:15px; margin-top:30px; color:#636b6f; font-family: 'Raleway';">Voltooide Taken</h3>
+            @if(count($createdTasks) > 0)
+            <table class="table" style="margin-top:10px;">
+                <thead>
+                    <th>Taak #</th>
+                    <th>Beschrijving</th>
+                    <th>Deadline</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    @foreach($createdTasks as $createdTask)
+                    <tr>
+                        @if($createdTask->done === 1)
+                        <th>{{ $createdTask->id }}</th>
+                        <td>{{ $createdTask->name }}</td>
+                        <td>{{ $createdTask->deadline }}</td>
+                        <td>
+                            <form action="{{ route('tasks.destroy',['tasks'=>$createdTask->id]) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>
+                        </td>
+                        @endif
                     </tr>
                        
                     @endforeach 

@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('/tasks','TaskController');
+Route::post('/tasks/taskDone/{id}', 'TaskController@taskDone');
+
 
 Auth::routes();
 

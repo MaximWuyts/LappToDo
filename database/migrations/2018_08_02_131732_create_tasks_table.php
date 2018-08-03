@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('deadline');
+            $table->boolean('done')->default(false);
             $table->timestamps();
         });
     }
