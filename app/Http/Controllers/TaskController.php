@@ -97,6 +97,8 @@ class TaskController extends Controller
 
         $task->save();
 
+        Session::flash('success', 'De taak is succesvol bewerkt!');
+
         return redirect()->route('tasks.index');
     }
 
@@ -111,6 +113,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
 
+        Session:flash('success', 'Uw taak is succesvol verwijderd!');
         return redirect()->back();
     }
 }
