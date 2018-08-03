@@ -18,7 +18,7 @@
     <div class="container">
         <div class="col-md-offset-2 col-md-8">
             <div class="row">
-                <h1>Todo Lijst</h1>
+                <h1 style="margin-left:15px;">Todo Lijst</h1>
             </div>
             <!-- SUCCES Tonen -->
             @if(Session::has('success'))
@@ -68,7 +68,7 @@
                         <th>{{ $createdTask->id }}</th>
                         <td>{{ $createdTask->name }}</td>
                         <td>{{ $createdTask->deadline }}</td>
-                        <td>bewerk</td>
+                        <td><a href="{{ route('tasks.edit',['tasks'=>$createdTask->id])}}" class="btn btn-primary">Bewerk</td>
                         <td>
                             <form action="{{ route('tasks.destroy',['tasks'=>$createdTask->id]) }}" method="POST">
                                 @csrf

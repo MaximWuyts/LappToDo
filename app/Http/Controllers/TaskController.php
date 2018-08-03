@@ -70,10 +70,12 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        //
-    }
+        $task = Task::find($id);
+
+        return view('tasks.edit')->with('currentTaskEdit',$task);
+    } 
 
     /**
      * Update the specified resource in storage.
@@ -82,9 +84,20 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'editedTaskName' => 'required|min:5|max:255',
+            'editedTaskDate' => 'required',
+        ]);
+
+        $task = Task::find($id);
+        $task->name = $request->editedTaskName;
+        $task->deadline = $request->editedTaskDate;
+
+        $task->save();
+
+        return redirect()->route('tasks.index');
     }
 
     /**
