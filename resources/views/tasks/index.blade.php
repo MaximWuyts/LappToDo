@@ -12,7 +12,7 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 
-    <title>Todo Lijst Applicatie</title>
+    <title>Todo List Application</title>
 </head>
 <body>
     <div class="container">
@@ -31,9 +31,9 @@
             <div class="row">
                     <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <p class="pull-right" style="margin-top:20px; margin-right:20px;">Ingelogd als <b>{{Auth::user()->name}} </b><button type="submit" class="btn btn-warning">Uitloggen</button></p>
+                            <p class="pull-right" style="margin-top:20px; margin-right:20px;">Logged in as <b>{{Auth::user()->name}} </b><button type="submit" class="btn btn-warning">Log Out</button></p>
                     </form>
-                    <h1 style="margin-left:15px; margin-top:20px; color:#636b6f; font-family: 'Raleway';">Todo Lijst</h1>
+                    <h1 style="margin-left:15px; margin-top:20px; color:#636b6f; font-family: 'Raleway';">Todo List</h1>
                    
             </div>
 
@@ -73,11 +73,11 @@
             @if(count($createdTasks) > 0)
             <table class="table" style="margin-top:10px;">
                 <thead>
-                    <th>Taak #</th>
-                    <th>Beschrijving</th>
-                    <th>Deadline</th>
-                    <th>Voltooien</th>
-                    <th>Bewerken</th>
+                    <th>Task #</th>
+                    <th>Description</th>
+                    <th>Due Date</th>
+                    <th>Complete</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </thead>
                 <tbody>
@@ -94,7 +94,7 @@
                                 @csrf
                             </form>
                         </td>
-                        <td><a href="{{ route('tasks.edit',['tasks'=>$createdTask->id])}}" class="btn btn-primary">Bewerk</td>
+                        <td><a href="{{ route('tasks.edit',['tasks'=>$createdTask->id])}}" class="btn btn-primary">Edit</td>
                         
                             <td>
                             <form action="{{ route('tasks.destroy',['tasks'=>$createdTask->id]) }}" method="POST">
@@ -112,13 +112,13 @@
             </table>
             @endif
 
-            <h3 style="margin-left:15px; margin-top:30px; color:#636b6f; font-family: 'Raleway';">Voltooide Taken</h3>
+            <h3 style="margin-left:15px; margin-top:30px; color:#636b6f; font-family: 'Raleway';">Completed Tasks</h3>
             @if(count($createdTasks) > 0)
             <table class="table" style="margin-top:10px;">
                 <thead>
-                    <th>Taak #</th>
-                    <th>Beschrijving</th>
-                    <th>Deadline</th>
+                    <th>Task #</th>
+                    <th>Description</th>
+                    <th>Due Date</th>
                     <th>Delete</th>
                 </thead>
                 <tbody>

@@ -48,7 +48,7 @@ class TaskController extends Controller
         $task->deadline = $request->newDeadline;
         $task->save();
 
-        Session::flash('success','Nieuwe taak is succesvol toegevoegd!');
+        Session::flash('success','Your task has been successfully added!');
         
         return redirect()->back();
     }
@@ -97,7 +97,7 @@ class TaskController extends Controller
 
         $task->save();
 
-        Session::flash('success', 'De taak is succesvol bewerkt!');
+        Session::flash('success', 'Your tasks has been succesfully edited!');
 
         return redirect()->route('tasks.index');
     }
@@ -113,7 +113,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
 
-        Session::flash('success', 'Uw taak is succesvol verwijderd!');
+        Session::flash('success', 'Your tasks has been succesfully removed!');
         return redirect()->back();
     }
 
@@ -122,6 +122,8 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->done = true;
         $task->save();
+
+        Session::flash('success','Your task has been successfully completed!');
 
         return redirect()->back();
     }
