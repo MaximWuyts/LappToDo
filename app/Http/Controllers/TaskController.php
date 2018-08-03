@@ -112,8 +112,8 @@ class TaskController extends Controller
     {
         $task = Task::find($id);
         $task->delete();
-
-        Session:flash('success', 'Uw taak is succesvol verwijderd!');
+        
+        Session::flash('success', 'Uw taak is succesvol verwijderd!');
         return redirect()->back();
     }
 }
