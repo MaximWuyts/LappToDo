@@ -93,7 +93,10 @@
                             @if($createdTask->done === 0)
                                 <th>{{ $createdTask->id }}</th>
                                 <td>{{ $createdTask->name }}</td>
-                                <td>{{ $createdTask->deadline }}</td>
+                                @if($createdTask->deadline  < date('Y-m-d H:i:s')) 
+                                    <td style="color:red;" > {{ $createdTask->deadline }}</td>
+                                @else<td>{{ $createdTask->deadline }}</td>
+                                @endif
                                 <td>
                                     <form action="{{ url('tasks/taskDone/' . $createdTask->id) }}" method="POST">
                                         <input type="submit" class="btn btn-success" value="Done">
@@ -137,7 +140,9 @@
                             @if($createdTask->done === 1)
                                 <th>{{ $createdTask->id }}</th>
                                 <td>{{ $createdTask->name }}</td>
+                                
                                 <td>{{ $createdTask->deadline }}</td>
+                                
                                 <td>
                                     <form action="{{ route('tasks.destroy',['tasks'=>$createdTask->id]) }}" method="POST">
                                         <input type="hidden" name="_method" value="DELETE">
