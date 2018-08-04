@@ -17,7 +17,6 @@ class TaskController extends Controller
     {
         $tasks = Task::orderBy('id','desc')->get();
         return view('tasks.index')->with('createdTasks', $tasks);
-
     }
 
     /**
@@ -90,11 +89,10 @@ class TaskController extends Controller
             'editedTaskName' => 'required|min:5|max:255',
             'editedTaskDate' => 'required',
         ]);
-
+        
         $task = Task::find($id);
         $task->name = $request->editedTaskName;
         $task->deadline = $request->editedTaskDate;
-
         $task->save();
 
         Session::flash('success', 'Your tasks has been succesfully edited!');
@@ -114,6 +112,7 @@ class TaskController extends Controller
         $task->delete();
 
         Session::flash('success', 'Your tasks has been succesfully removed!');
+        
         return redirect()->back();
     }
 
