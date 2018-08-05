@@ -20,10 +20,10 @@
             <div class="row">
 
                 @if(!Auth::check())
-                    <h1 style="font-family: 'Raleway'; text-align:center; margin-top: 100px; color:#636b6f">U moet ingelogd zijn om taken te kunnen zien!</h1>
+                    <h1 style="font-family: 'Raleway'; text-align:center; margin-top: 100px; color:#636b6f">You need to be logged in to see your tasks!</h1>
                     <div class="col-md-2 col-md-offset-5" style="margin-top:20px;">
                         <a href="{{ route('login')}}" class="btn btn-primary">Login</a>
-                        <a href="{{ route('register')}}" class="btn btn-primary">Registreer</a>
+                        <a href="{{ route('register')}}" class="btn btn-primary">Register</a>
                     </div>
                 @endif
 
