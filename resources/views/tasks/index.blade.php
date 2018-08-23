@@ -62,6 +62,7 @@
                 </div>
             @endif    
             
+            <!-- Task Form -->
             <div class="row" style="margin-top:25px;">
                 <form action="{{route('tasks.store')}}" method="POST">
                     <div class="col-md-7">
@@ -71,10 +72,10 @@
                         <input type="date" name="newDeadline" class="form-control">
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="btn btn-success btn-clock" value="Add Task">
+                        <input type="submit" class="btn btn-success btn-block" value="Add Task">
                     </div>
-                    @csrf
-                </form>
+                    @csrf <!--  cross-site request forgery protection --> 
+                </form> 
             </div>
 
             @if(count($createdTasks) > 0)

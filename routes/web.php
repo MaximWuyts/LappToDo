@@ -15,7 +15,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::resource('/tasks','TaskController');
+Route::resource('/tasks','TaskController'); //activate resources
 Route::post('/tasks/taskDone/{id}', 'TaskController@taskDone');
 
 
