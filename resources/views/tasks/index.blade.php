@@ -50,7 +50,8 @@
                     <strong>{{Session::get('success')}}</strong>
                 </div>
             @endif
-            <!-- errors tonen -->
+
+            <!-- errors display -->
             @if (count($errors) > 0)
                 <div class="alert alert-warning">
                     <strong>Error:</strong>
@@ -64,7 +65,7 @@
             
             <!-- Task Form -->
             <div class="row" style="margin-top:25px;">
-                <form action="{{route('tasks.store')}}" method="POST">
+                <form action="{{route('tasks.store')}}" method="POST"> <!-- store Tasks -->
                     <div class="col-md-7">
                         <input type="text" name="newTaskName" class="form-control">
                     </div>
@@ -78,6 +79,7 @@
                 </form> 
             </div>
 
+            <!-- Show Tasks -->
             @if(count($createdTasks) > 0)
                 <table class="table" style="margin-top:10px;">
                     <thead>
@@ -96,7 +98,7 @@
                                 <td>{{ $createdTask->name }}</td>
                                 @if($createdTask->deadline  < date('Y-m-d H:i:s')) 
                                     <td style="color:red;" > {{ $createdTask->deadline }}</td>
-                                @else<td>{{ $createdTask->deadline }}</td>
+                                @else <td>{{ $createdTask->deadline }}</td>
                                 @endif
                                 <td>
                                     <form action="{{ url('tasks/taskDone/' . $createdTask->id) }}" method="POST">

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+/** add class **/
 use App\Task;
-use Illuminate\Http\Request;
 use Session;
+use Illuminate\Http\Request;
+
 
 class TaskController extends Controller
 {
@@ -37,6 +39,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        /* error handling */
         $this->validate($request, [
             'newTaskName' => 'required|min:5|max:255',
             'newDeadline' => 'required',
