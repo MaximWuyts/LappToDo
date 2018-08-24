@@ -98,7 +98,7 @@ class TaskController extends Controller
         $task->deadline = $request->editedTaskDate;
         $task->save();
 
-        Session::flash('success', 'Your tasks has been succesfully edited!');
+        Session::flash('success', 'Your task has been succesfully edited!');
 
         return redirect()->route('tasks.index');
     }

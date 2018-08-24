@@ -21,14 +21,14 @@
                 <h1 style="margin-left:15px;">Todo List</h1>
             </div>
 
-            <!-- SUCCES Tonen -->
+            <!-- SUCCES display -->
             @if(Session::has('success'))
                 <div class="alert alert-success">
                     <strong>{{Session::get('success')}}</strong>
                 </div>
             @endif
 
-            <!-- errors tonen -->
+            <!-- error handling -->
             @if (count($errors) > 0)
                 <div class="alert alert-warning">
                     <strong>Error:</strong>
@@ -40,17 +40,18 @@
                 </div>
             @endif   
 
+            <!-- edit task form -->
             <div class="row">
                 <form action="{{route('tasks.update',[$currentTaskEdit->id])}}" method="POST">
-                    <input type="hidden" name="_method" value="PUT">    
+                    <input type="hidden" name="_method" value="PUT"> <!--change to put (html != PUT) -->
                     <div class="form-group col-md-7">
                         <input type="text" name="editedTaskName" class="form-control" value="{{ $currentTaskEdit->name}}">
                     </div>
                     <div class="form-group col-md-3">
                         <input type="date" name="editedTaskDate" class="form-control" value="{{ $currentTaskEdit->deadline}}">
                     </div>
-                        <input type="submit" value="Opslaan" class="btn btn-success">
-                        <a href="{{route('tasks.index')}}" class="btn btn-primary " style="margin-left:15px; margin-top:20px;">Ga terug naar home!</a>
+                        <input type="submit" value="Save" class="btn btn-success">
+                        <a href="{{route('tasks.index')}}" class="btn btn-primary " style="margin-left:15px; margin-top:20px;">Go back to home!</a>
                     @csrf                   
                 </form>
             </div>
