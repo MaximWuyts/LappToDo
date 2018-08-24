@@ -19,6 +19,7 @@
     <div class="container">
             <div class="row">
 
+                <!-- check if logged in -->
                 @if(!Auth::check())
                     <h1 style="font-family: 'Raleway'; text-align:center; margin-top: 100px; color:#636b6f">You need to be logged in to see your tasks!</h1>
                     <div class="col-md-2 col-md-offset-5" style="margin-top:20px;">
@@ -125,6 +126,7 @@
                 </table>
             @endif
 
+            <!-- completed tasks -->
             <h3 style="margin-left:15px; margin-top:30px; color:#636b6f; font-family: 'Raleway';">
                 Completed Tasks
             </h3>
